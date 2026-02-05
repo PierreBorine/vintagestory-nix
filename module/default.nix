@@ -71,7 +71,7 @@ in {
           inherit (cfg) port;
           dataPath = "/var/lib/${cfg.dataPath}";
           ip = cfg.host;
-          maxclients = builtins.toString cfg.maxClients;
+          maxclients = toString cfg.maxClients;
         };
       in ''
         ${lib.getExe' cfg.package "vintagestory-server"} \
