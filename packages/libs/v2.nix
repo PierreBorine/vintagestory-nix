@@ -1,17 +1,16 @@
 {
-  builders,
   clib,
   lib,
 }: let
-  importMinorVersion = f: let
+  importMinorVersion = builder: f: let
     mkVSVersion = {
       version,
       hash,
     }: let
       v = clib.normalizeVersion version;
       attrs = {
-        "v${v}" = builders.mkVintageStoryV2 {inherit version hash;};
-        # TODO: remove when 1.22 hits unstable
+        "v${v}" = builder {inherit version hash;};
+        # TODO: remove .NET8 hack when 1.22 hits unstable
         "v${v}-net8" = builtins.warn ''
           'v${v}-net8' is deprecated, please use 'v${v}' instead. As of 1.21, Vintage Story officially uses dotnet8.
         '' attrs."v${v}";
