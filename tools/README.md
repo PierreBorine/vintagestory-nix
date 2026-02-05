@@ -13,28 +13,35 @@ This directory contains packages and home-manager modules for some modding tools
 </p>
 
 ## Packages
+
 - `rustique`
 - `vs-launcher`
 - `vsmodelcreator`
 
 ## Home-Manager modules
+
 - `default` (all modules)
 - `vs-launcher`
 
 ## Rustique
+
 [Rustique](https://github.com/Tekunogosu/Rustique) is a Rust command-line interface,
 for managing and updating Vintage Story mods and their dependencies.
 
 It works the same way as an Operating System package manager.
 
 ## VS Launcher
-[VS Launcher](https://github.com/XurxoMF/vs-launcher) is an Electron-based game versions and mods manager.<br>
-You can easily create isolated installations of Vintage Story to have different modpacks at different game versions.
+
+[VS Launcher](https://github.com/XurxoMF/vs-launcher) is an Electron-based
+game versions and mods manager.<br>
+You can easily create isolated installations of Vintage Story to have different
+modpacks at different game versions.
 
 > [!IMPORTANT]
 > Vintage Story versions installed through the in-app downloader won't start on NixOS.
 
-#### Maximal example
+**Maximal example**
+
 ```nix
 # home.nix
 {inputs, pkgs, ...}: {
@@ -67,9 +74,12 @@ You can easily create isolated installations of Vintage Story to have different 
 ```
 
 ## VS Model Creator
-[VS Model Creator](https://github.com/anegostudios/vsmodelcreator) is the official tool for creating and animating blocks, items and entities for Vintage Story.
 
-[Here](https://wiki.vintagestory.at/Modding:VS_Model_Creator) is a link to the wiki with guides on how to use the software.
+[VS Model Creator](https://github.com/anegostudios/vsmodelcreator) is the
+official tool for creating and animating blocks, items and entities for Vintage Story.
+
+Here is [a link](https://wiki.vintagestory.at/Modding:VS_Model_Creator) to
+the wiki with guides on how to use the software.
 
 > [!NOTE]
 > I haven't extensively tested this one but it worked well in my toying.

@@ -13,6 +13,7 @@ This directory contains all the packaged Vintage Story versions.
 </p>
 
 ## Usage
+
 The recommended way is to use the overlay
 
 ```nix
@@ -25,6 +26,7 @@ The recommended way is to use the overlay
 ```
 
 You can then access all packages through the `vintagestoryPackages` namespace.
+
 ```nix
 {pkgs, ...}:
 with pkgs.vintagestoryPackages; [
@@ -44,7 +46,8 @@ with pkgs.vintagestoryPackages; [
 ]
 ```
 
-##### Example
+**Example**
+
 ```nix
 {pkgs, ...}: {
   home.packages = [pkgs.vintagestoryPackages.latest];
@@ -61,28 +64,38 @@ with pkgs.vintagestoryPackages; [
 
 > [!TIP]
 > Get the full list of packages using the following command:
+>
 > ```sh
 > nix flake show github:PierreBorine/vintagestory-nix
 > ```
 
 ## "`-net8`" packages
-Before 1.21, Vintage Story used .NET 7 which had reached End-Of-Life on the 14th of May 2024,
-this means its package was marked as insecure on nixpkgs.
 
-Trying to install an older version throws an error if you didn't add `dotnet-runtime-7.0.20` to your `permittedInsecurePackages`.
+Before 1.21, Vintage Story used .NET 7 which had reached End-Of-Life on the
+14th of May 2024, this means its package was marked as insecure on nixpkgs.
 
-This flake provides packages suffixed with `-net8` for versions up to 1.20.12 that subtitute .NET7 with .NET8.
+Trying to install an older version throws an error if you didn't add
+`dotnet-runtime-7.0.20` to your `permittedInsecurePackages`.
 
-I did not encounter issues in my playtime with these packages so I assume they are safe to use.
+This flake provides packages suffixed with `-net8` for versions up to 1.20.12
+that substitute .NET7 with .NET8.
+
+I did not encounter issues in my playtime with these packages so I assume they
+are safe to use.
 
 > [!NOTE]
 > As of 1.21, Vintage Story officially uses .NET8 so this is not needed anymore.
 
 ## Use Wayland instead of X11/XWayland
-[Since 1.21](https://www.vintagestory.at/forums/topic/16744-v1210-rc3-story-chapter-2-redux/#comment-80623), Vintage Story supports running a Wayland native window.
 
-Please note that X11 is still the default as VS on Wayland currently has scaling issues and generally less FPS.
+[Since 1.21](https://www.vintagestory.at/forums/topic/16744-v1210-rc3-story-chapter-2-redux/#comment-80623),
+Vintage Story supports running a Wayland native window.
+
+Please note that X11 is still the default as VS on Wayland currently has
+scaling issues and generally less FPS.
+
 ```nix
+
 {pkgs, ...}: {
   home.packages = [
     (pkgs.vintagestoryPackages.v1-21.override {
@@ -92,13 +105,16 @@ Please note that X11 is still the default as VS on Wayland currently has scaling
   ];
 }
 ```
+
 Enabling both will make Vintage Story default to Wayland and fallback to X11.
 
-## A new Vintage Story version is out and I want it now !
+## A new Vintage Story version is out and I want it now
+
 You can install pretty much any version with the `mkVintageStory` function.
 
 Do note that this method may not work if the new version got substantial changes
-to the point it requiers an updated derivation.
+to the point it requires an updated derivation.
+
 ```nix
 {inputs, ...}: {
   home.packages = [
