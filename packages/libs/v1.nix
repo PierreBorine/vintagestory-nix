@@ -33,6 +33,5 @@
     clib.recursiveMergeAttrsList ([latestVersion] ++ versions');
 
   importMinorVersion = f: mkMinorVersion (import f);
-in {
-  inherit mkMinorVersion importMinorVersion;
-}
+in
+  importMinorVersion

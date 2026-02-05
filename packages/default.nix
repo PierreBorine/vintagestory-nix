@@ -8,8 +8,8 @@
   v2 = import ./libs/v2.nix {inherit builders clib lib;};
 in
   clib.mkPackageSet [
-    (v2.importMinorVersion ./1-21.nix)
-    (v1.importMinorVersion ./1-20.nix)
-    (v1.importMinorVersion ./1-19.nix)
-    (v1.importMinorVersion ./1-18.nix)
+    (v2 ./1-21.nix)
+    (v1 ./1-20.nix)
+    (v1 ./1-19.nix)
+    (v1 ./1-18.nix)
   ]
