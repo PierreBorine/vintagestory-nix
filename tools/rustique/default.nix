@@ -18,7 +18,6 @@ rustPlatform.buildRustPackage rec {
   # use the GNU toolchain from stdenv
   postPatch = "rm -vf .cargo/config.toml";
 
-  useFetchCargoVendor = true;
   cargoHash = "sha256-pIaMiPe3OW6JU5NKUhsVHNsvYvQdIVs1swhWz0wPn08=";
 
   # unstable rust feature path_add_extension
