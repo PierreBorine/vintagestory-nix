@@ -11,7 +11,7 @@ rustPlatform.buildRustPackage rec {
     owner = "Tekunogosu";
     repo = "Rustique";
     rev = "v${version}";
-    hash = "sha256-CdVZbp3csZ0uQImYBeEhTGLAwL5EA42sefmjylBStMY=";
+    hash = "sha256-aVop4ZO+mufkguU5+yTpyAtWlZ5u5J5QSo1xhJh7afc=";
   };
 
   # tries to use clang and /usr/bin/mold, let's just not do that, and
@@ -29,6 +29,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/Tekunogosu/Rustique";
     changelog = "https://github.com/Tekunogosu/Rustique/blob/${src.rev}/changelog.md";
     license = lib.licenses.mit;
-    mainProgram = "Rustique";
+    mainProgram = "rustique-cli";
   };
 }
