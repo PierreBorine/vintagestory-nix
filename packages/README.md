@@ -110,7 +110,6 @@ to the point it requiers an updated derivation.
     (inputs.vintagestory-nix.lib.mkVintageStory {
       version = "1.28.4-rc.2";
       hash = "sha256-fCSJu7qnU8kC4tisJLlUQV9zlET7oDU/MkbCpu7ISzg=";
-      unstable = true;
     })
   ];
 }

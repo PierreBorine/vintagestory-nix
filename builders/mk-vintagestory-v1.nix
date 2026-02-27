@@ -19,18 +19,27 @@
   dotnet-runtime_7,
   version,
   hash,
-  unstable ? false,
+  unstable ? null,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "vintagestory";
   inherit version;
 
-  src = let
-    stability =
-      if unstable
-      then "unstable"
-      else "stable";
-  in
+  src =
+    let
+      version_split = builtins.splitVersion version;
+      stability =
+        lib.warnIf (unstable != null) ''
+            vintagestory-nix: Calling `mkVintageStory` with `unstable` is deprecated.
+            Version stability is now determined automatically from the version string.
+        '' (
+        if builtins.elem "pre" version_split
+        then "pre"
+        else if builtins.elem "rc" version_split
+        then "unstable"
+        else "stable"
+      );
+    in
     fetchzip {
       url = "https://cdn.vintagestory.at/gamefiles/${stability}/vs_client_linux-x64_${version}.tar.gz";
       ${
