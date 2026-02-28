@@ -121,7 +121,7 @@ stdenv.mkDerivation (finalAttrs: {
       ${wrapperFlags} \
       --add-flags $out/share/vintagestory/VintagestoryServer.dll
 
-    find "$out/share/vintagestory/assets/" -not -path "*/fonts/*" -regex ".*/.*[A-Z].*" | while read -r file; do
+    find "$out/share/vintagestory/assets/" -not -path "*/fonts/*" -regex ".*/.*[A-Z][^/]*" | while read -r file; do
       local filename="$(basename -- "$file")"
       ln -sf "$filename" "''${file%/*}"/"''${filename,,}"
     done
