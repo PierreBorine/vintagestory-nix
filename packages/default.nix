@@ -4,8 +4,8 @@
 }: let
   # common libs
   clib = import ./libs {inherit lib;};
-  v1 = import ./libs/v1.nix {inherit builders clib lib;};
-  v2 = import ./libs/v2.nix {inherit clib lib;};
+  v1 = import ./libs/v1.nix {inherit builders clib;};
+  v2 = import ./libs/v2.nix {inherit clib;};
 in
   clib.mkPackageSet [
     (v2 builders.mkVintageStoryV2 ./1-21.nix)

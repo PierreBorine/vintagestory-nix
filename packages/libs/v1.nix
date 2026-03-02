@@ -1,7 +1,6 @@
 {
   builders,
   clib,
-  lib,
 }: let
   importMinorVersion = f: let
     mkVSVersion = {
@@ -20,9 +19,7 @@
       versions' = map mkVSVersion versions;
       highestVersionSet = clib.highestVersion versions';
 
-      # "1.20.4" => "1-20"
-      majorMinor =
-        clib.normalizeVersion (lib.versions.majorMinor highestVersionSet.version);
+      majorMinor = clib.majorMinorNormalized highestVersionSet;
       highestVersion = clib.normalizeVersion highestVersionSet.version;
 
       # {v-1-20 = <der>; v1-20-net8 = <der>;}
