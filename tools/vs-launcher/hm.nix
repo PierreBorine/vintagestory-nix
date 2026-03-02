@@ -27,12 +27,7 @@ packages: {
     (lib.attrsets)
     optionalAttrs
     ;
-  inherit
-    (builtins)
-    toJSON
-    isNull
-    map
-    ;
+  inherit (builtins) toJSON;
 
   cfg = config.programs.vs-launcher;
 
@@ -130,7 +125,7 @@ in {
         })
         cfg.settings.gameVersions);
 
-      optionalOption = name: value: optionalAttrs (!isNull value) {${name} = value;};
+      optionalOption = name: value: optionalAttrs (value != null) {${name} = value;};
       settings = toJSON (
         optionalOption "defaultInstallationsFolder" cfg.settings.installationsDir
         // optionalOption "defaultVersionsFolder" cfg.settings.versionsDir

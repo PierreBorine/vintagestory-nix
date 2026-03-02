@@ -12,14 +12,14 @@
   jre8,
   ant,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "vsmodelcreator";
   version = "29Oct2025";
 
   src = fetchFromGitHub {
     owner = "anegostudios";
     repo = "vsmodelcreator";
-    rev = version;
+    rev = finalAttrs.version;
     hash = "sha256-CzGJmcvcf6QLGqXu2LJ14RzzfakisjhmTG7x/plp6U0=";
   };
 
@@ -77,7 +77,7 @@ stdenv.mkDerivation rec {
     description = "Vintage Story Model Creator";
     homepage = "https://github.com/anegostudios/vsmodelcreator";
     license = lib.licenses.asl20;
-    mainProgram = "vsmodelcreator";
     platforms = lib.platforms.linux;
+    mainProgram = "vsmodelcreator";
   };
-}
+})

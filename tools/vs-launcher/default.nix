@@ -5,7 +5,7 @@
 , makeDesktopItem
 , makeWrapper
 , electron
-}: buildNpmPackage rec {
+}: buildNpmPackage (finalAttrs: {
   pname = "vs-launcher";
   version = "1.5.7";
 
@@ -14,7 +14,7 @@
   src = fetchFromGitHub {
     owner = "XurxoMF";
     repo = "vs-launcher";
-    rev = version;
+    rev = finalAttrs.version;
     hash = "sha256-KJbzsHUXq78PPtGfeDL07aDYVxezPBOwiSoybzX6zRc=";
   };
 
@@ -63,7 +63,7 @@
     exec = "vs-launcher %U";
     icon = "vs-launcher";
     genericName = "Vintage Story Mod Manager";
-    comment = meta.description;
+    comment = finalAttrs.meta.description;
     keywords = [
       "launcher"
       "electron"
@@ -77,12 +77,12 @@
     ];
   })];
 
-  meta = with lib; {
+  meta = {
     description = "Unofficial launcher and version manager for Vintage Story";
     homepage = "https://github.com/XurxoMF/vs-launcher";
     downloadPage = "https://github.com/XurxoMF/vs-launcher/releases";
-    license = licenses.unfree;
+    license = lib.licenses.unfree;
     platforms = lib.platforms.all;
-    mainProgram = pname;
+    mainProgram = "vs-launcher";
   };
-}
+})

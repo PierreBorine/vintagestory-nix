@@ -3,14 +3,14 @@
   rustPlatform,
   fetchFromGitHub,
 }:
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "Rustique";
   version = "0.5.11";
 
   src = fetchFromGitHub {
     owner = "Tekunogosu";
     repo = "Rustique";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-aVop4ZO+mufkguU5+yTpyAtWlZ5u5J5QSo1xhJh7afc=";
   };
 
@@ -26,8 +26,8 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "The best Vintage Story mod manager you've never used";
     homepage = "https://github.com/Tekunogosu/Rustique";
-    changelog = "https://github.com/Tekunogosu/Rustique/blob/${src.rev}/changelog.md";
+    changelog = "https://github.com/Tekunogosu/Rustique/blob/${finalAttrs.src.rev}/changelog.md";
     license = lib.licenses.mit;
     mainProgram = "rustique-cli";
   };
-}
+})
