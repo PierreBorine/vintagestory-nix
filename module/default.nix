@@ -75,7 +75,7 @@ in {
         };
       in ''
         ${lib.getExe' cfg.package "vintagestory-server"} \
-          ${lib.cli.toGNUCommandLineShell {} opts} \
+          ${lib.cli.toCommandLineShellGNU {} opts} \
           ${lib.concatStringsSep " " cfg.extraFlags}
       '';
 
