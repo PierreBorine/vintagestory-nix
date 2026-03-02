@@ -103,7 +103,7 @@ for more complete docs.
 
 ### Server
 
-See the [module file](https://github.com/PierreBorine/vintagestory-nix/tree/master/module/default.nix)
+See the [module file](https://github.com/PierreBorine/vintagestory-nix/blob/master/module/default.nix)
 for more infos
 
 ```nix
