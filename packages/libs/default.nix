@@ -6,12 +6,13 @@
     head
     attrValues
     filter
-    match
-    compareVersions
+    splitVersion
     warn
     ;
   inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.versions) majorMinor;
+  inherit (lib.strings) versionOlder;
+  inherit (lib.lists) intersectLists;
 
   recursiveMergeAttrsList =
     foldl' (acc: attr: recursiveUpdate acc attr) {};
@@ -22,16 +23,22 @@
   # {version = "1.20.4";} => "1-20"
   majorMinorNormalized = package:
     normalizeVersion (majorMinor package.version);
+
   getVersion = set: (head (attrValues set)).version;
+
+  isStable = version:
+    (intersectLists (splitVersion version) ["pre" "rc"]) == [];
+  filterUnstable = filter (el: isStable (getVersion el));
+
   highestVersion = versions: let
-    versions' = filter (el: match ".*-rc\.[0-9]{1,2}" (getVersion el) == null) versions;
+    versions' = filterUnstable versions;
   in
     foldl' (
       maxSet: set: let
         maxSetVersion = getVersion maxSet;
         setVersion = getVersion set;
       in
-        if compareVersions maxSetVersion setVersion == 1
+        if versionOlder setVersion maxSetVersion
         then maxSet // {version = maxSetVersion;}
         else set // {version = setVersion;}
     ) (head versions')
@@ -56,6 +63,7 @@ in {
     majorMinorNormalized
     normalizeVersion
     highestVersion
+    filterUnstable
     mkPackageSet
     ;
 }

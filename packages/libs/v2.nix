@@ -22,13 +22,16 @@
       majorMinor = clib.majorMinorNormalized highestVersionSet;
       highestVersion = clib.normalizeVersion highestVersionSet.version;
 
-      # {v-1-20 = <der>;}
-      latestVersion = {
-        "v${majorMinor}" = highestVersionSet."v${highestVersion}";
-        "v${majorMinor}-net8" = builtins.warn ''
-          'v${majorMinor}-net8' is deprecated, please use 'v${majorMinor}' instead. As of 1.21, Vintage Story officially uses dotnet8.
-        '' latestVersion."v${majorMinor}";
-      };
+      # {v1-20 = <der>;}
+      latestVersion =
+        if (clib.filterUnstable versions') == []
+        then {}
+        else {
+          "v${majorMinor}" = highestVersionSet."v${highestVersion}";
+          "v${majorMinor}-net8" = builtins.warn ''
+            'v${majorMinor}-net8' is deprecated, please use 'v${majorMinor}' instead. As of 1.21, Vintage Story officially uses dotnet8.
+          '' latestVersion."v${majorMinor}";
+        };
     in
       clib.recursiveMergeAttrsList ([latestVersion] ++ versions');
   in mkMinorVersion (import f);
