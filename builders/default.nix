@@ -3,8 +3,11 @@ pkgs: rec {
   #
   # mkVintageStory {version = "1.20.4"; hash = "sha256-Hgp2u/y2uPnJhAmPpwof76/woFGz4ISUXU+FIRMjMuQ=";}
   # => <Vintage Story derivation>
+  # 1.18.8 -> 1.20.12
   mkVintageStoryV1 = pkgs.callPackage (import ./mk-vintagestory-v1.nix);
+  # 1.21
   mkVintageStoryV2 = pkgs.callPackage (import ./mk-vintagestory-v2.nix);
+  # 1.22 -> ...
   mkVintageStoryV3 = pkgs.callPackage (import ./mk-vintagestory-v3.nix);
 
   # Override a Vintage Story derivation to replace .NET 7 with .NET 8.
