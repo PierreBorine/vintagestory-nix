@@ -2,37 +2,30 @@
   {
     version = "1.21.0-rc.1";
     hash = "sha256-TALcccfOUYFaZTEl4Mf0DeWlpuLB81vTrf/JK0O1UgY=";
-    unstable = true;
   }
   {
     version = "1.21.0-rc.2";
     hash = "sha256-FFTD/hqOplc82tbgbXvX4akxFr2oGynz3YoqxBtzUps=";
-    unstable = true;
   }
   {
     version = "1.21.0-rc.3";
     hash = "sha256-st/8UsJROlt36IYoQ8kpIXTIyKlViWTBnqAmtLMFIyY=";
-    unstable = true;
   }
   {
     version = "1.21.0-rc.4";
     hash = "sha256-NaMVO6MR43qnsQz4eJhAWepcfHT9+TQtVGMXR+NcxFI=";
-    unstable = true;
   }
   {
     version = "1.21.0-rc.5";
     hash = "sha256-w6bk3ROS62wyEa+3VChGjEaYwzkrNgkFCldW3J8QRdU=";
-    unstable = true;
   }
   {
     version = "1.21.0-rc.6";
     hash = "sha256-+UD6jn8cTd8k7916gc6WKoIxNC4cNmGMq5MTR7hta60=";
-    unstable = true;
   }
   {
     version = "1.21.0-rc.7";
     hash = "sha256-Srs5faDNmGYxOI8kHvI6BEdTdSTtCgdRTg4YeHq4zs4=";
-    unstable = true;
   }
   {
     version = "1.21.0";
@@ -41,12 +34,10 @@
   {
     version = "1.21.1-rc.1";
     hash = "sha256-jTImsd8KQNTAL8MFUl7pp3H/URyPGzvh1VKRTQPVc0c=";
-    unstable = true;
   }
   {
     version = "1.21.1-rc.2";
     hash = "sha256-mSYcwWTlTmiM1/tI2iecqZIwPIdR3Rxqda4rwE1COho=";
-    unstable = true;
   }
   {
     version = "1.21.1";
@@ -55,17 +46,14 @@
   {
     version = "1.21.2-rc.1";
     hash = "sha256-fCSJu7qnU8kC4tisJLlUQV9zlET7oDU/MkbCpu7ISzg=";
-    unstable = true;
   }
   {
     version = "1.21.2-rc.2";
     hash = "sha256-G/IjKF6VUEw6PKY8mgG/zVoozW9vyuPanhkPxStntZ4=";
-    unstable = true;
   }
   {
     version = "1.21.2-rc.3";
     hash = "sha256-bso5NwzDhtaZJdlR8LbaLtOM5WckirEtYwM+r1F7GYY=";
-    unstable = true;
   }
   {
     version = "1.21.2";
@@ -86,7 +74,6 @@
   {
     version = "1.21.6-rc.1";
     hash = "sha256-4fHSKAv0ISzVXSgdNmrr2dWDWzqrPOXvm4QMCfa+cYE=";
-    unstable = true;
   }
   {
     version = "1.21.6";

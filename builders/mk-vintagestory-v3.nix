@@ -5,22 +5,26 @@
   makeWrapper,
   makeDesktopItem,
   copyDesktopItems,
-  xorg,
-  gtk2,
-  sqlite,
-  openal,
   cairo,
   libGLU,
-  SDL2,
-  freealut,
   libglvnd,
   pipewire,
   libpulseaudio,
-  dotnet-runtime_7,
+  dotnet-runtime_10,
+  x11Support ? true,
+  xorg ? null,
+  waylandSupport ? false,
+  wayland ? null,
+  libxkbcommon ? null,
   version,
   hash,
-  unstable ? null,
 }:
+
+assert x11Support || waylandSupport;
+assert x11Support -> xorg != null;
+assert waylandSupport -> wayland != null;
+assert waylandSupport -> libxkbcommon != null;
+
 stdenv.mkDerivation (finalAttrs: {
   pname = "vintagestory";
   inherit version;
@@ -29,16 +33,12 @@ stdenv.mkDerivation (finalAttrs: {
     let
       version_split = builtins.splitVersion version;
       stability =
-        lib.warnIf (unstable != null) ''
-            vintagestory-nix: Calling `mkVintageStory` with `unstable` is deprecated.
-            Version stability is now determined automatically from the version string.
-        '' (
         if builtins.elem "pre" version_split
         then "pre"
         else if builtins.elem "rc" version_split
         then "unstable"
         else "stable"
-      );
+      ;
     in
     fetchzip {
       url = "https://cdn.vintagestory.at/gamefiles/${stability}/vs_client_linux-x64_${version}.tar.gz";
@@ -57,21 +57,20 @@ stdenv.mkDerivation (finalAttrs: {
 
   runtimeLibs =
     [
-      gtk2
-      sqlite
-      openal
       cairo
       libGLU
-      SDL2
-      freealut
       libglvnd
       pipewire
       libpulseaudio
     ]
-    ++ [
+    ++ lib.optionals x11Support [
       xorg.libX11
       xorg.libXi
       xorg.libXcursor
+    ]
+    ++ lib.optionals waylandSupport [
+      wayland
+      libxkbcommon
     ];
 
   desktopItems = [
@@ -97,9 +96,9 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/vintagestory $out/bin $out/share/pixmaps $out/share/fonts/truetype
+    mkdir -p $out/share/vintagestory $out/bin $out/share/icons/hicolor/512x512/apps $out/share/fonts/truetype
     cp -r * $out/share/vintagestory
-    cp $out/share/vintagestory/assets/gameicon.xpm $out/share/pixmaps/vintagestory.xpm
+    cp $out/share/vintagestory/assets/gameicon.png $out/share/icons/hicolor/512x512/apps/vintagestory.png
     cp $out/share/vintagestory/assets/game/fonts/*.ttf $out/share/fonts/truetype
 
     rm -rvf $out/share/vintagestory/{install,run,server}.sh
@@ -111,13 +110,16 @@ stdenv.mkDerivation (finalAttrs: {
     runtimeLibs' = lib.strings.makeLibraryPath finalAttrs.runtimeLibs;
     wrapperFlags = lib.trim ''
       --prefix LD_LIBRARY_PATH : "${runtimeLibs'}" \
+      ${lib.strings.optionalString waylandSupport ''
+        --set-default OPENTK_4_USE_WAYLAND 1 \
+      ''} \
       --set-default mesa_glthread true
     '';
   in ''
-    makeWrapper ${lib.meta.getExe dotnet-runtime_7} $out/bin/vintagestory \
+    makeWrapper ${lib.meta.getExe dotnet-runtime_10} $out/bin/vintagestory \
       ${wrapperFlags} \
       --add-flags $out/share/vintagestory/Vintagestory.dll
-    makeWrapper ${lib.meta.getExe dotnet-runtime_7} $out/bin/vintagestory-server \
+    makeWrapper ${lib.meta.getExe dotnet-runtime_10} $out/bin/vintagestory-server \
       ${wrapperFlags} \
       --add-flags $out/share/vintagestory/VintagestoryServer.dll
 
