@@ -8,6 +8,7 @@
   v2 = import ./libs/v2.nix {inherit clib;};
 in
   clib.mkPackageSet [
+    (v2 builders.mkVintageStoryV3 ./1-22.nix)
     (v2 builders.mkVintageStoryV2 ./1-21.nix)
     (v1 ./1-20.nix)
     (v1 ./1-19.nix)
