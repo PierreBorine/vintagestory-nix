@@ -5,7 +5,9 @@
   makeWrapper,
   makeDesktopItem,
   copyDesktopItems,
-  xorg,
+  libX11,
+  libXi,
+  libXcursor,
   gtk2,
   sqlite,
   openal,
@@ -69,9 +71,9 @@ stdenv.mkDerivation (finalAttrs: {
       libpulseaudio
     ]
     ++ [
-      xorg.libX11
-      xorg.libXi
-      xorg.libXcursor
+      libX11
+      libXi
+      libXcursor
     ];
 
   desktopItems = [

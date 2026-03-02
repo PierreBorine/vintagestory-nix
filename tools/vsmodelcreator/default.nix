@@ -5,7 +5,8 @@
   copyDesktopItems,
   makeDesktopItem,
   makeWrapper,
-  xorg,
+  libXxf86vm,
+  xrandr,
   libGL,
   jdk8,
   jre8,
@@ -45,8 +46,8 @@ stdenv.mkDerivation rec {
 
     makeWrapper ${lib.getExe jre8} $out/bin/vsmodelcreator \
       --add-flags "-cp $out/share/vsmodelcreator/vsmodelcreator.jar at.vintagestory.modelcreator.Start" \
-      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath (with xorg; [libXxf86vm libGL])} \
-      --prefix PATH : ${lib.makeBinPath [xorg.xrandr]}
+      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libXxf86vm libGL]} \
+      --prefix PATH : ${lib.makeBinPath [xrandr]}
 
     runHook postInstall
   '';
