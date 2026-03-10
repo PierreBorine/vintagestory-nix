@@ -38,7 +38,8 @@ You can easily create isolated installations of Vintage Story to have different
 modpacks at different game versions.
 
 > [!IMPORTANT]
-> Vintage Story versions installed through the in-app downloader won't start on NixOS.
+> Vintage Story versions installed through the in-app downloader won't start
+> on NixOS.
 
 **Maximal example**
 
@@ -76,7 +77,8 @@ modpacks at different game versions.
 ## VS Model Creator
 
 [VS Model Creator](https://github.com/anegostudios/vsmodelcreator) is the
-official tool for creating and animating blocks, items and entities for Vintage Story.
+official tool for creating and animating blocks, items and entities
+for Vintage Story.
 
 Here is [a link](https://wiki.vintagestory.at/Modding:VS_Model_Creator) to
 the wiki with guides on how to use the software.

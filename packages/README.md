@@ -40,6 +40,10 @@ with pkgs.vintagestoryPackages; [
   # Select the latest packaged version.
   latest
 
+  # Select a release-candidate or pre-release
+  v1-22-0-rc-2
+  v1-22-0-pre-3
+
   # Select a .NET8 patched version
   v1-19-7-net8
   v1-20-net8
