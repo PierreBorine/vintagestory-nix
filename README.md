@@ -29,7 +29,7 @@ nix flake show github:PierreBorine/vintagestory-nix
 
 ### 🔧 Modding tools with Home Manager modules
 
-- **VS Launcher** (unfree) - [github](https://github.com/XurxoMF/vs-launcher) -
+- **VS Launcher** (MIT) - [github](https://github.com/XurxoMF/vs-launcher) -
 [moddb](https://mods.vintagestory.at/show/mod/16326)
 - **Rustique** (MIT) - [github](https://github.com/Tekunogosu/Rustique) -
 [moddb](https://mods.vintagestory.at/rustique)

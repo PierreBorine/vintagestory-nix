@@ -81,7 +81,7 @@
     description = "Unofficial launcher and version manager for Vintage Story";
     homepage = "https://github.com/XurxoMF/vs-launcher";
     downloadPage = "https://github.com/XurxoMF/vs-launcher/releases";
-    license = lib.licenses.unfree;
+    license = lib.licenses.mit;
     platforms = lib.platforms.all;
     mainProgram = "vs-launcher";
   };

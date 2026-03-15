@@ -15,7 +15,6 @@
         allowUnfreePredicate = pkg:
           builtins.elem (lib.getName pkg) [
             "vintagestory"
-            "vs-launcher"
             "rustory"
           ];
         permittedInsecurePackages = [
