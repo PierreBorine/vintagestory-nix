@@ -43,10 +43,6 @@ with pkgs.vintagestoryPackages; [
   # Select a release-candidate or pre-release
   v1-22-0-rc-2
   v1-22-0-pre-3
-
-  # Select a .NET8 patched version
-  v1-19-7-net8
-  v1-20-net8
 ]
 ```
 
@@ -59,7 +55,7 @@ with pkgs.vintagestoryPackages; [
   programs.vs-launcher = {
     enable = true;
     settings.gameVersions = with pkgs.vintagestoryPackages; [
-      v1-19-6-net8
+      v1-19-6
       v1-21-0
     ];
   };
@@ -72,23 +68,6 @@ with pkgs.vintagestoryPackages; [
 > ```sh
 > nix flake show github:PierreBorine/vintagestory-nix
 > ```
-
-## "`-net8`" packages
-
-Before 1.21, Vintage Story used .NET 7 which had reached End-Of-Life on the
-14th of May 2024, this means its package was marked as insecure on nixpkgs.
-
-Trying to install an older version throws an error if you didn't add
-`dotnet-runtime-7.0.20` to your `permittedInsecurePackages`.
-
-This flake provides packages suffixed with `-net8` for versions up to 1.20.12
-that substitute .NET7 with .NET8.
-
-I did not encounter issues in my playtime with these packages so I assume they
-are safe to use.
-
-> [!NOTE]
-> As of 1.21, Vintage Story officially uses .NET8 so this is not needed anymore.
 
 ## Use Wayland instead of X11/XWayland
 

@@ -61,7 +61,7 @@ modpacks at different game versions.
       gameVersions = with pkgs.vintagestoryPackages; [
         # Old save with lots of mods, some of them
         # never got updated
-        v1-19-6-net8
+        v1-19-6
 
         # I have an active save with some friends
         v1-21-0
