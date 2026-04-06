@@ -17,11 +17,13 @@ This directory contains packages and home-manager modules for some modding tools
 - `rustique`
 - `vs-launcher`
 - `vsmodelcreator`
+- `mvl`
 
 ## Home-Manager modules
 
 - `default` (all modules)
 - `vs-launcher`
+- `mvl`
 
 ## Rustique
 
@@ -58,6 +60,48 @@ modpacks at different game versions.
       backupDir = "${config.xdg.configHome}/VSLauncher/backups";
 
       # List of Vintage Story packages to install in VS Launcher
+      gameVersions = with pkgs.vintagestoryPackages; [
+        # Old save with lots of mods, some of them
+        # never got updated
+        v1-19-6
+
+        # I have an active save with some friends
+        v1-21-0
+      ];
+    };
+  };
+
+  # Can still have a standalone install
+  home.packages = [pkgs.vintagestoryPackages.latest];
+}
+```
+
+## MVL
+
+[MVL](https://github.com/scgm0/MVL) is a Godot-based
+game versions and mods manager.<br>
+You can easily create isolated installations of Vintage Story to have different
+modpacks at different game versions.
+
+> [!IMPORTANT]
+> Vintage Story versions installed through the in-app downloader won't start
+> on NixOS.
+
+**Maximal example**
+
+```nix
+# home.nix
+{inputs, pkgs, ...}: {
+  imports = [inputs.vintagestory-nix.homeModules.mvl];
+
+  programs.mvl = {
+    enable = true; # Install MVL
+    package = pkgs.vintagestoryPackages.mvl; # default
+    settings = {
+      releaseFolder = ".MVL/Release";
+      modpackFolder = ".MVL/Modpack";
+
+      # List of Vintage Story packages to install in MVL
       gameVersions = with pkgs.vintagestoryPackages; [
         # Old save with lots of mods, some of them
         # never got updated

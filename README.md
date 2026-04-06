@@ -33,6 +33,8 @@ nix flake show github:PierreBorine/vintagestory-nix
 [moddb](https://mods.vintagestory.at/rustique)
 - **VS Model Creator** (Apache 2.0) -
 [github](https://github.com/anegostudios/vsmodelcreator) -[wiki](https://wiki.vintagestory.at/Modding:VS_Model_Creator)
+- **MVL** (MIT) - [github](https://github.com/scgm0/MVL) -
+[moddb](https://mods.vintagestory.at/mvl)
 
 ## Usage
 
