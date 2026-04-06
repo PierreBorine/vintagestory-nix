@@ -28,13 +28,13 @@ nix flake show github:PierreBorine/vintagestory-nix
 ### 🔧 Modding tools with Home Manager modules
 
 - **VS Launcher** (MIT) - [github](https://github.com/XurxoMF/vs-launcher) -
-[moddb](https://mods.vintagestory.at/show/mod/16326)
+[moddb](https://mods.vintagestory.at/show/mod/16326) - [module](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools#vs-launcher)
 - **Rustique** (MIT) - [github](https://github.com/Tekunogosu/Rustique) -
 [moddb](https://mods.vintagestory.at/rustique)
 - **VS Model Creator** (Apache 2.0) -
 [github](https://github.com/anegostudios/vsmodelcreator) -[wiki](https://wiki.vintagestory.at/Modding:VS_Model_Creator)
 - **MVL** (MIT) - [github](https://github.com/scgm0/MVL) -
-[moddb](https://mods.vintagestory.at/mvl)
+[moddb](https://mods.vintagestory.at/mvl) - [module](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools#mvl)
 
 ## Usage
 
