@@ -7,7 +7,7 @@
 
 <p align="center">
 This directory contains packages and home-manager modules for some modding tools.
-<br><br><b>🧭 Navigation</b><br>
+<br><br><b>Documentation</b><br>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/packages"><b>📦Packages</b></a></kbd>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix"><b>🏠Home</b></a></kbd>
 </p>

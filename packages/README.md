@@ -7,7 +7,7 @@
 
 <p align="center">
 This directory contains all the packaged Vintage Story versions.
-<br><br><b>🧭 Navigation</b><br>
+<br><br><b>Documentation</b><br>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix"><b>🏠Home</b></a></kbd>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/tools"><b>🔧Tools</b></a></kbd>
 </p>

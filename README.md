@@ -8,7 +8,7 @@
 <p align="center">
 A flake to help you on your
 <a href="https://www.vintagestory.at">Vintage Story</a> journey on NixOS.
-<br><br><b>🧭 Navigation</b><br>
+<br><br><b>Documentation</b><br>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/packages"><b>📦Packages</b></a></kbd>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/tools"><b>🔧Tools</b></a></kbd>
 </p>
