@@ -47,4 +47,8 @@
     version = "1.22.0-rc.8";
     hash = "sha256-UhlqGylu/ooErG0p1p06whIZjSSnEvpfR84/590ElW0=";
   }
+  {
+    version = "1.22.0-rc.9";
+    hash = "sha256-z6mvoV4Y+yYuM389KlKwDn0IUWe9tydpSkMQ++exNko=";
+  }
 ]
