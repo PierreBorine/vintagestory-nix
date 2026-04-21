@@ -1,18 +1,11 @@
-{
-  builders,
-  clib,
-}: let
-  importMinorVersion = f: let
+{clib}: let
+  importMinorVersion = builder: f: let
     mkVSVersion = {
       version,
       hash,
-    }: let
-      v = clib.normalizeVersion version;
-      attrs = {
-        "v${v}" = builders.mkVintageStoryV1 {inherit version hash;};
-      };
-    in
-      attrs;
+    }: {
+      "v${clib.normalizeVersion version}" = builder {inherit version hash;};
+    };
 
     mkMinorVersion = versions: let
       versions' = map mkVSVersion versions;
