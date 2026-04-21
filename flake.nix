@@ -49,13 +49,6 @@
 
     homeModules = import ./tools/hm.nix {inherit packages;};
 
-    homeManagerModules = let
-      deprecateTo = builtins.warn "vintagestory-nix: `homeManagerModules` is deprecated, please use `homeModules` instead.";
-    in {
-      default = deprecateTo self.homeModules.vs-launcher;
-      vs-launcher = deprecateTo self.homeModules.vs-launcher;
-    };
-
     nixosModules.default = import ./module;
   };
 }
