@@ -7,7 +7,6 @@
     attrValues
     filter
     splitVersion
-    warn
     ;
   inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.versions) majorMinor;
@@ -49,13 +48,8 @@
     packages-set = recursiveMergeAttrsList packages;
   in
     packages-set
-    // rec {
+    // {
       latest = packages-set."v${latest-minor}";
-      latest-net8 =
-        warn ''
-          'latest-net8' is deprecated, please use 'latest' instead. As of 1.21, Vintage Story officially uses dotnet8.
-        ''
-        latest;
     };
 in {
   inherit

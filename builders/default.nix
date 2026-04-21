@@ -10,12 +10,6 @@ pkgs: rec {
   # 1.22 -> ...
   mkVintageStoryV3 = pkgs.callPackage (import ./mk-vintagestory-v3.nix);
 
-  # Override a Vintage Story derivation to replace .NET 7 with .NET 8.
-  #
-  # mkDotnet8 pkgs.vintagestory
-  # => <Vintage Story derivation that uses .NET 8>
-  mkDotnet8 = vs: pkgs.callPackage (import ./mk-dotnet-8.nix vs) {};
-
   # Wrapper function that selects the correct derivation to use
   # based on the version
   mkVintageStory = arg: let
@@ -28,5 +22,5 @@ pkgs: rec {
     else if versionOlder arg.version "1.22"
     then mkVintageStoryV2 arg
     else mkVintageStoryV3 arg;
-    # else throw "Versions past 1.10.12 are not (yet) packagable using this flake.";
+  # else throw "Versions past 1.10.12 are not (yet) packagable using this flake.";
 }
