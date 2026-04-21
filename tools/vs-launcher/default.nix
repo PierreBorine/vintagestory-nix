@@ -1,11 +1,13 @@
-{ lib
-, buildNpmPackage
-, fetchFromGitHub
-, copyDesktopItems
-, makeDesktopItem
-, makeWrapper
-, electron
-}: buildNpmPackage (finalAttrs: {
+{
+  lib,
+  buildNpmPackage,
+  fetchFromGitHub,
+  copyDesktopItems,
+  makeDesktopItem,
+  makeWrapper,
+  electron,
+}:
+buildNpmPackage (finalAttrs: {
   pname = "vs-launcher";
   version = "1.5.7";
 
@@ -57,25 +59,27 @@
     runHook postInstall
   '';
 
-  desktopItems = [(makeDesktopItem {
-    name = "vs-launcher";
-    desktopName = "VS Launcher";
-    exec = "vs-launcher %U";
-    icon = "vs-launcher";
-    genericName = "Vintage Story Mod Manager";
-    comment = finalAttrs.meta.description;
-    keywords = [
-      "launcher"
-      "electron"
-      "vintage"
-      "mods"
-    ];
-    categories = [
-      "Application"
-      "Utility"
-      "Game"
-    ];
-  })];
+  desktopItems = [
+    (makeDesktopItem {
+      name = "vs-launcher";
+      desktopName = "VS Launcher";
+      exec = "vs-launcher %U";
+      icon = "vs-launcher";
+      genericName = "Vintage Story Mod Manager";
+      comment = finalAttrs.meta.description;
+      keywords = [
+        "launcher"
+        "electron"
+        "vintage"
+        "mods"
+      ];
+      categories = [
+        "Application"
+        "Utility"
+        "Game"
+      ];
+    })
+  ];
 
   meta = {
     description = "Unofficial launcher and version manager for Vintage Story";

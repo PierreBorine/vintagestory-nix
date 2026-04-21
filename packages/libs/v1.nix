@@ -30,6 +30,7 @@
         };
     in
       clib.recursiveMergeAttrsList ([latestVersion] ++ versions');
-  in mkMinorVersion (import f);
+  in
+    mkMinorVersion (import f);
 in
   importMinorVersion
