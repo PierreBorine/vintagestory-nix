@@ -2,13 +2,10 @@
   builders,
   lib,
 }: let
-  recursiveMergeAttrsList =
-    lib.foldl' (acc: attr: lib.recursiveUpdate acc attr) {};
+  # "1.20.4" => "v1-20-4"
+  normalizeVersion = v: "v" + (lib.replaceStrings ["."] ["-"] v);
 
-  # "1.20.4" => "1-20-4"
-  normalizeVersion = lib.replaceStrings ["."] ["-"];
-
-  # {version = "1.20.4";} => "1-20"
+  # {version = "1.20.4";} => "v1-20"
   majorMinorNormalized = package:
     normalizeVersion (lib.versions.majorMinor package.version);
 
@@ -32,6 +29,7 @@
     ) (lib.head versions')
     versions';
 
+  # {v1-20-4 = <der>; v1-20-5 = <der>; v1-20 = <der>;}
   importMinorVersion = f: let
     mkMinorVersion = {
       builder,
@@ -41,7 +39,7 @@
         version,
         hash,
       }: {
-        "v${normalizeVersion version}" = builder {inherit version hash;};
+        ${normalizeVersion version} = builder {inherit version hash;};
       };
 
       versions' = map mkVSVersion versions;
@@ -51,27 +49,26 @@
       highestVersion' = normalizeVersion highestVersionSet.version;
 
       # {v1-20 = <der>;}
-      latestVersion =
-        if (filterUnstable versions') == []
-        then {}
-        else {
-          "v${majorMinor}" = highestVersionSet."v${highestVersion'}";
-        };
+      latestVersion = lib.optionalAttrs (filterUnstable versions' != []) {
+        ${majorMinor} = highestVersionSet.${highestVersion'};
+      };
     in
-      recursiveMergeAttrsList ([latestVersion] ++ versions');
+      lib.mergeAttrsList ([latestVersion] ++ versions');
   in
     mkMinorVersion (import f builders);
 
   mkPackageSet = packages': let
     packages = map importMinorVersion packages';
+    # eg: "1-20", "1-21"
     latest-minor = majorMinorNormalized (highestVersion packages);
-    packages-set = recursiveMergeAttrsList packages;
+    packages-set = lib.mergeAttrsList packages;
   in
     packages-set
     // {
-      latest = packages-set."v${latest-minor}";
+      latest = packages-set.${latest-minor};
     };
 
+  # get all nix files in the directory (except default.nix)
   versions = lib.pipe ./. [
     lib.readDir
     (lib.filterAttrs (n: _: lib.hasSuffix ".nix" n && n != "default.nix"))
