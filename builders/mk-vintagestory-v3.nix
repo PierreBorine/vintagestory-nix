@@ -5,6 +5,7 @@
   makeWrapper,
   makeDesktopItem,
   copyDesktopItems,
+  versionCheckHook,
   cairo,
   libGLU,
   libglvnd,
@@ -132,6 +133,9 @@ stdenv.mkDerivation (finalAttrs: {
       ln -sf "$filename" "''${file%/*}"/"''${filename,,}"
     done
   '';
+
+  doInstallCheck = true;
+  installCheckInputs = [versionCheckHook];
 
   meta = {
     description = "In-development indie sandbox game about innovation and exploration";
