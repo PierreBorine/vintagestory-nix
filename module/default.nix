@@ -113,9 +113,20 @@ in {
       # operator
       (pkgs.writeShellScriptBin "vintagestory-admin" ''
         journalctl -o cat -fu vintagestory.service & pid=$!
-        ${lib.getExe pkgs.socat} -u STDIN PIPE:/run/vintagestory.socket
 
-        kill $pid
+        # If stdin is a tty,
+        if [ -t 0 ] ; then
+          # Use readline for input
+          ${lib.getExe pkgs.socat} -u READLINE PIPE:/run/vintagestory.socket
+
+          # Supress error (and exitcode) if already killed by ^C
+          kill $pid 2>/dev/null; true
+        else
+          # Do not use readline, as it will crash if stdin isn’t a tty
+          ${lib.getExe pkgs.socat} -u STDIN PIPE:/run/vintagestory.socket
+
+          kill $pid
+        fi
       '')
     ];
 
