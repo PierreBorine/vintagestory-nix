@@ -112,7 +112,7 @@ in {
       # At the moment this script is also the only way to make a player an
       # operator
       (pkgs.writeShellScriptBin "vintagestory-admin" ''
-        journalctl -o cat -fu vintagestory.service & pid=$!
+        journalctl -o cat -fu vintagestory.service 2>/dev/null & pid=$!
 
         # If stdin is a tty,
         if [ -t 0 ] ; then
