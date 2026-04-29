@@ -117,7 +117,15 @@ in {
         # If stdin is a tty,
         if [ -t 0 ] ; then
           # Use readline for input
-          ${lib.getExe pkgs.socat} -u READLINE PIPE:/run/vintagestory.socket
+
+          historyfile="''${XDG_STATE_DIR:-$HOME/.local/state}/vintagestory-admin.history"
+          mkdir -p "$(dirname "$historyfile")"
+
+          ${lib.getExe pkgs.socat} -u READLINE,history="$historyfile" PIPE:/run/vintagestory.socket
+
+          # Keep only the latest occurance of duplicate lines in the history file
+          # Keep only 500 lines of history
+          tac "$historyfile" | awk '!x[$0]++' | tac | tail -n 500 | ${lib.getExe' pkgs.moreutils "sponge"} "$historyfile"
 
           # Supress error (and exitcode) if already killed by ^C
           kill $pid 2>/dev/null; true
