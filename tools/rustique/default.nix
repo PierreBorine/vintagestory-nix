@@ -5,20 +5,20 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "Rustique";
-  version = "0.5.15";
+  version = "0.5.16";
 
   src = fetchFromGitHub {
     owner = "Tekunogosu";
     repo = "Rustique";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-lYMq/j+7uxeKYpZZ2Erze+VxbJ6zXHC401kSROTHIfY=";
+    hash = "sha256-ySvm55bvWa/4iYgEbalXciwiVUCejGwSDdonDgXxE2o=";
   };
 
   # tries to use clang and /usr/bin/mold, let's just not do that, and
   # use the GNU toolchain from stdenv
   postPatch = "rm -vf .cargo/config.toml";
 
-  cargoHash = "sha256-jcNookjKD29QXet01eVLsB6p1bHQSKekYWc6aiwuYiQ=";
+  cargoHash = "sha256-sKTEw2MeIngt08/am53nOkYz4JGncZC7S597OMNP5qE=";
 
   # unstable rust feature path_add_extension
   env.RUSTC_BOOTSTRAP = 1;
