@@ -112,10 +112,29 @@ in {
       # At the moment this script is also the only way to make a player an
       # operator
       (pkgs.writeShellScriptBin "vintagestory-admin" ''
-        journalctl -o cat -fu vintagestory.service & pid=$!
-        ${lib.getExe pkgs.socat} -u STDIN PIPE:/run/vintagestory.socket
+        journalctl -o cat -fu vintagestory.service 2>/dev/null & pid=$!
 
-        kill $pid
+        # If stdin is a tty,
+        if [ -t 0 ] ; then
+          # Use readline for input
+
+          historyfile="''${XDG_STATE_DIR:-$HOME/.local/state}/vintagestory-admin.history"
+          mkdir -p "$(dirname "$historyfile")"
+
+          ${lib.getExe pkgs.socat} -u READLINE,history="$historyfile" PIPE:/run/vintagestory.socket
+
+          # Keep only the latest occurance of duplicate lines in the history file
+          # Keep only 500 lines of history
+          tac "$historyfile" | awk '!x[$0]++' | tac | tail -n 500 | ${lib.getExe' pkgs.moreutils "sponge"} "$historyfile"
+
+          # Supress error (and exitcode) if already killed by ^C
+          kill $pid 2>/dev/null; true
+        else
+          # Do not use readline, as it will crash if stdin isn’t a tty
+          ${lib.getExe pkgs.socat} -u STDIN PIPE:/run/vintagestory.socket
+
+          kill $pid
+        fi
       '')
     ];
 
