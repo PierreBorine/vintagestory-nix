@@ -106,9 +106,9 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/vintagestory $out/bin $out/share/pixmaps $out/share/fonts/truetype
+    mkdir -p $out/share/vintagestory $out/bin $out/share/fonts/truetype
     cp -r * $out/share/vintagestory
-    cp $out/share/vintagestory/assets/gameicon.xpm $out/share/pixmaps/vintagestory.xpm
+    install -Dm444 $out/share/vintagestory/assets/gameicon.xpm $out/share/pixmaps/vintagestory.xpm
     cp $out/share/vintagestory/assets/game/fonts/*.ttf $out/share/fonts/truetype
 
     rm -rvf $out/share/vintagestory/{install,run,server}.sh
