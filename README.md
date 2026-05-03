@@ -101,7 +101,7 @@ for more complete docs.
 }
 ```
 
-### Server
+### Server Module
 
 See the [module file](https://github.com/PierreBorine/vintagestory-nix/blob/master/module/default.nix)
 for more infos
@@ -123,7 +123,7 @@ for more infos
 
 This flake does not provide a way to declaratively install mods with Nix.
 Fortunately for you, [vs2nix](https://github.com/dtomvan/vs2nix) is another
-Vintage Story flake that packages the top 400 mods of modDB.
+Vintage Story flake that packages the top 500 mods of modDB.
 
 ## Thanks
 

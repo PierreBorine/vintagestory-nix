@@ -1,7 +1,5 @@
 pkgs: rec {
-  # Wrapper function to easily package a new version of Vintage Story.
-  #
-  # mkVintageStory {version = "1.20.4"; hash = "sha256-Hgp2u/y2uPnJhAmPpwof76/woFGz4ISUXU+FIRMjMuQ=";}
+  # mkVintageStoryVX {version = "1.20.4"; hash = "sha256-Hgp...";}
   # => <Vintage Story derivation>
   # 1.18.8 -> 1.20.12
   mkVintageStoryV1 = pkgs.callPackage (import ./mk-vintagestory-v1.nix);
@@ -11,7 +9,7 @@ pkgs: rec {
   mkVintageStoryV3 = pkgs.callPackage (import ./mk-vintagestory-v3.nix);
 
   # Wrapper function that selects the correct derivation to use
-  # based on the version
+  # based on the version.
   mkVintageStory = arg: let
     inherit (pkgs.lib) versionOlder;
   in

@@ -123,11 +123,11 @@ in {
 
           ${lib.getExe pkgs.socat} -u READLINE,history="$historyfile" PIPE:/run/vintagestory.socket
 
-          # Keep only the latest occurance of duplicate lines in the history file
+          # Keep only the latest occurrence of duplicate lines in the history file
           # Keep only 500 lines of history
           tac "$historyfile" | awk '!x[$0]++' | tac | tail -n 500 | ${lib.getExe' pkgs.moreutils "sponge"} "$historyfile"
 
-          # Supress error (and exitcode) if already killed by ^C
+          # Suppress error (and exitcode) if already killed by ^C
           kill $pid 2>/dev/null; true
         else
           # Do not use readline, as it will crash if stdin isn’t a tty
