@@ -13,7 +13,7 @@
       inherit system;
       config = {
         allowUnfreePredicate = pkg:
-          builtins.elem (lib.getName pkg) [
+          lib.elem (lib.getName pkg) [
             "vintagestory"
             "rustory"
           ];

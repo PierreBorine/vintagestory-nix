@@ -36,11 +36,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   src =
     let
-      version_split = builtins.splitVersion version;
+      version_split = lib.splitVersion version;
       stability =
-        if builtins.elem "pre" version_split
+        if lib.elem "pre" version_split
         then "pre"
-        else if builtins.elem "rc" version_split
+        else if lib.elem "rc" version_split
         then "unstable"
         else "stable"
       ;
