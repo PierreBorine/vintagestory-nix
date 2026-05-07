@@ -70,7 +70,7 @@
 
   # get all nix files in the directory (except default.nix)
   versions = lib.pipe ./. [
-    lib.readDir
+    builtins.readDir
     (lib.filterAttrs (n: _: lib.hasSuffix ".nix" n && n != "default.nix"))
     (lib.mapAttrsToList (n: _: ./. + "/${n}"))
   ];
