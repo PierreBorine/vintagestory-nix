@@ -9,8 +9,8 @@
 A flake to help you on your
 <a href="https://www.vintagestory.at">Vintage Story</a> journey on NixOS.
 <br><br><b>Documentation</b><br>
-<kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/packages"><b>📦Packages</b></a></kbd>
-<kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/tools"><b>🔧Tools</b></a></kbd>
+<kbd><a href="https://codeberg.org/PierreBorine/vintagestory-nix/src/branch/master/packages"><b>📦Packages</b></a></kbd>
+<kbd><a href="https://codeberg.org/PierreBorine/vintagestory-nix/src/branch/master/tools"><b>🔧Tools</b></a></kbd>
 </p>
 
 ## Features
@@ -20,7 +20,7 @@ A flake to help you on your
 Get the full list using the following command:
 
 ```shell
-nix flake show github:PierreBorine/vintagestory-nix
+nix flake show git+https://codeberg.org/PierreBorine/vintagestory-nix
 ```
 
 ### 🧪 Release Candidates and Pre Releases
@@ -44,7 +44,7 @@ Add this flake as an input to yours
 # flake.nix
 inputs = {
   vintagestory-nix = {
-    url = "github:PierreBorine/vintagestory-nix";
+    url = "git+https://codeberg.org/PierreBorine/vintagestory-nix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 };
@@ -61,7 +61,7 @@ Add the overlay
 
 ### Vintage Story packages
 
-See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/master/packages)
+See the [relevant README](https://codeberg.org/PierreBorine/vintagestory-nix/src/branch/testing/packages)
 for more complete docs.
 
 ```nix
@@ -77,7 +77,7 @@ for more complete docs.
 
 ### Modding Tools
 
-See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools)
+See the [relevant README](https://codeberg.org/PierreBorine/vintagestory-nix/src/branch/testing/tools)
 for more complete docs.
 
 ```nix
@@ -103,7 +103,7 @@ for more complete docs.
 
 ### Server Module
 
-See the [module file](https://github.com/PierreBorine/vintagestory-nix/blob/master/module/default.nix)
+See the [module file](https://codeberg.org/PierreBorine/vintagestory-nix/src/branch/testing/module/default.nix)
 for more infos
 
 ```nix

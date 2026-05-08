@@ -8,8 +8,8 @@
 <p align="center">
 This directory contains all the packaged Vintage Story versions.
 <br><br><b>Documentation</b><br>
-<kbd><a href="https://github.com/PierreBorine/vintagestory-nix"><b>🏠Home</b></a></kbd>
-<kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/tools"><b>🔧Tools</b></a></kbd>
+<kbd><a href="codeberg.org/PierreBorine/vintagestory-nix"><b>🏠Home</b></a></kbd>
+<kbd><a href="https://codeberg.org/PierreBorine/vintagestory-nix/src/branch/master/tools"><b>🔧Tools</b></a></kbd>
 </p>
 
 ## Usage
@@ -66,7 +66,7 @@ with pkgs.vintagestoryPackages; [
 > Get the full list of packages using the following command:
 >
 > ```sh
-> nix flake show github:PierreBorine/vintagestory-nix
+> nix flake show git+https://codeberg.org/PierreBorine/vintagestory-nix
 > ```
 
 ## Use Wayland instead of X11/XWayland
