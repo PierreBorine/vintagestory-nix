@@ -4,12 +4,12 @@
   appimageTools,
   makeDesktopItem,
 }: let
-  version = "1.0.0";
+  version = "1.0.1";
   pname = "mvl";
 
   src = fetchurl {
     url = "https://github.com/scgm0/MVL/releases/download/${version}/MVL-${version}.AppImage";
-    hash = "sha256-KKZsMzU2NXRPJMjXLVxGLjD3maBeFIm8N733NUUtWdc=";
+    hash = "sha256-oIxQHBhtaYf0d6u1hCmMJYmYhlJQecNux1lHI9JiF8I=";
   };
 
   appimageContents = appimageTools.extractType1 {inherit pname src version;};
