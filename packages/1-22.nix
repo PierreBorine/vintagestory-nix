@@ -69,5 +69,9 @@ builders: {
       version = "1.22.2";
       hash = "sha256-M0FPCp/NhGHfAICnOtl6VVpINJG0jMJVuPohoDN9vr4=";
     }
+    {
+      version = "1.22.3";
+      hash = "sha256-AX63eMwaNztQ6hoyEZrQDG5XJOBiBgrh8YHHoiP6I3o=";
+    }
   ];
 }
