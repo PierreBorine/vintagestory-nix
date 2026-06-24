@@ -4,7 +4,7 @@
   fetchFromGitHub,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
-  pname = "Rustique";
+  pname = "rustique";
   version = "0.5.16";
 
   src = fetchFromGitHub {
