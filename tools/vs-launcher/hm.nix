@@ -67,19 +67,6 @@ packages: {
     };
   };
 in {
-  imports = [
-    (mkRemovedOptionModule [
-      "programs"
-      "vs-launcher"
-      "gameVersionsDir"
-    ] "The option has been removed")
-    (mkRemovedOptionModule [
-      "programs"
-      "vs-launcher"
-      "installedVersions"
-    ] "The option has been renamed to <programs.vs-launcher.settings.gameVersions>")
-  ];
-
   options.programs.vs-launcher = {
     enable = mkEnableOption "VS Launcher";
 
