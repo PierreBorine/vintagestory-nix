@@ -15,7 +15,6 @@ packages: {
     ;
   inherit
     (lib.types)
-    submodule
     package
     listOf
     nullOr
@@ -23,9 +22,13 @@ packages: {
     ;
 
   cfg = config.programs.mvl;
+in {
+  options.programs.mvl = {
+    enable = mkEnableOption "MVL";
 
-  settingsSubmodule = submodule {
-    options = {
+    package = mkPackageOption packages "mvl" {};
+
+    settings = {
       releaseFolder = mkOption {
         type = nullOr str;
         default = null;
@@ -48,29 +51,13 @@ packages: {
         type = listOf package;
         default = [];
         description = "List of Vintage Story packages to add in MVL.";
-      };
-    };
-  };
-in {
-  options.programs.mvl = {
-    enable = mkEnableOption "MVL";
-
-    package = mkPackageOption packages "mvl" {};
-
-    settings = mkOption {
-      type = settingsSubmodule;
-      default = {};
-      example = literalExpression ''
-        {
-          releaseFolder = ".MVL/Release";
-          modpackFolder = ".MVL/Modpack";
-
-          gameVersions = with pkgs.vintagestoryPackages; [
+        example = literalExpression ''
+          with pkgs.vintagestoryPackages; [
             v1-21-1
             v1-21-2-rc-2
-          ];
-        }
-      '';
+          ]
+        '';
+      };
     };
   };
 
