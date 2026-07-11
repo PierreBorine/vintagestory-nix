@@ -3,11 +3,9 @@ packages: {
   lib,
   ...
 }: let
-  inherit
-    (lib.modules)
-    mkRemovedOptionModule
-    mkIf
-    ;
+  inherit (lib.modules) mkIf;
+  inherit (lib.attrsets) optionalAttrs;
+  inherit (lib.strings) toJSON;
   inherit
     (lib.options)
     literalExpression
@@ -17,26 +15,26 @@ packages: {
     ;
   inherit
     (lib.types)
-    submodule
     package
     listOf
     nullOr
     str
     ;
-  inherit
-    (lib.attrsets)
-    optionalAttrs
-    ;
-  inherit (builtins) toJSON;
 
   cfg = config.programs.vs-launcher;
+in {
+  options.programs.vs-launcher = {
+    enable = mkEnableOption "VS Launcher";
 
-  settingsSubmodule = submodule {
-    options = {
+    package = mkPackageOption packages "vs-launcher" {};
+
+    settings = {
       installationsDir = mkOption {
         type = nullOr str;
         default = null;
-        example = ".VSLauncher/installations";
+        example = literalExpression ''
+          ''${config.xdg.configHome}/VSLauncher/installations
+        '';
         description = ''
           Path to the directory containing VS Launcher's installations.
         '';
@@ -44,7 +42,9 @@ packages: {
       versionsDir = mkOption {
         type = nullOr str;
         default = null;
-        example = ".VSLauncher/gameVersions";
+        example = literalExpression ''
+          ''${config.xdg.configHome}/VSLauncher/gameVersions
+        '';
         description = ''
           Path to the directory containing VS Launcher's Vintage Story versions.
 
@@ -54,7 +54,9 @@ packages: {
       backupDir = mkOption {
         type = nullOr str;
         default = null;
-        example = ".VSLauncher/backups";
+        example = literalExpression ''
+          ''${config.xdg.configHome}/VSLauncher/backups
+        '';
         description = ''
           Path to the directory containing VS Launcher's backups.
         '';
@@ -63,30 +65,13 @@ packages: {
         type = listOf package;
         default = [];
         description = "List of Vintage Story packages to add in VS Launcher.";
-      };
-    };
-  };
-in {
-  options.programs.vs-launcher = {
-    enable = mkEnableOption "VS Launcher";
-
-    package = mkPackageOption packages "vs-launcher" {};
-
-    settings = mkOption {
-      type = settingsSubmodule;
-      default = {};
-      example = literalExpression ''
-        {
-          installationsDir = "''${config.xdg.configHome}/VSLauncher/installations";
-          versionsDir = "''${config.xdg.configHome}/VSLauncher/gameVersions";
-          backupDir = "''${config.xdg.configHome}/VSLauncher/backups";
-
-          gameVersions = with pkgs.vintagestoryPackages; [
+        example = literalExpression ''
+          with pkgs.vintagestoryPackages; [
             v1-21-1
             v1-21-2-rc-2
-          ];
-        }
-      '';
+          ]
+        '';
+      };
     };
   };
 
