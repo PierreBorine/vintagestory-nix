@@ -27,14 +27,17 @@ nix flake show git+https://codeberg.org/PierreBorine/vintagestory-nix
 
 ### 🔧 Modding tools with Home Manager modules
 
-- **VS Launcher** (MIT) - [github](https://github.com/XurxoMF/vs-launcher) -
-[moddb](https://mods.vintagestory.at/show/mod/16326) - [module](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools#vs-launcher)
+- VS Launcher (MIT) (**ABANDONED**) -
+[github](https://github.com/XurxoMF/vs-launcher) -
+[moddb](https://mods.vintagestory.at/show/mod/16326)
 - **Rustique** (MIT) - [github](https://github.com/Tekunogosu/Rustique) -
 [moddb](https://mods.vintagestory.at/rustique)
 - **VS Model Creator** (Apache 2.0) -
-[github](https://github.com/anegostudios/vsmodelcreator) -[wiki](https://wiki.vintagestory.at/Modding:VS_Model_Creator)
+[github](https://github.com/anegostudios/vsmodelcreator) -
+[wiki](https://wiki.vintagestory.at/Modding:VS_Model_Creator)
 - **MVL** (MIT) - [github](https://github.com/scgm0/MVL) -
-[moddb](https://mods.vintagestory.at/mvl) - [module](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools#mvl)
+[moddb](https://mods.vintagestory.at/mvl) -
+[module](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools#mvl)
 
 ## Usage
 
@@ -86,13 +89,13 @@ for more complete docs.
 
   home.packages = [
     pkgs.vintagestoryPackages.rustique
-    pkgs.vintagestoryPackages.vs-launcher
+    pkgs.vintagestoryPackages.vsmodelcreator
   ];
 
   # Recommended !!
   # As the builtin game downloader
   # won't work on NixOS.
-  programs.vs-launcher = {
+  programs.mvl = {
     enable = true;
     settings.gameVersions = [
       pkgs.vintagestoryPackages.v1-21-1
@@ -124,11 +127,3 @@ for more infos
 This flake does not provide a way to declaratively install mods with Nix.
 Fortunately for you, [vs2nix](https://github.com/dtomvan/vs2nix) is another
 Vintage Story flake that packages the top 500 mods of modDB.
-
-## Thanks
-
-- to the [Vintage Story team](https://www.vintagestory.at/aboutus.html)
-for their incredible game
-- to [XurxoMF](https://github.com/XurxoMF) for making VS Launcher
-- to [dtomvan](https://github.com/dtomvan/vs2nix/blob/main/parts/programs/rustique.nix)
-for the rustique derivation and the [server module](https://github.com/NixOS/nixpkgs/pull/414845)
