@@ -39,6 +39,10 @@ nix flake show git+https://codeberg.org/PierreBorine/vintagestory-nix
 [moddb](https://mods.vintagestory.at/mvl) -
 [module](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools#mvl)
 
+> [!TIP]
+> [Lithic](https://github.com/NotAShelf/lithic) is a fork of Rustique with a GUI.
+> Great recommendation, they already have a nix flake.
+
 ## Usage
 
 Add this flake as an input to yours
