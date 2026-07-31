@@ -24,11 +24,15 @@ rustPlatform.buildRustPackage (finalAttrs: {
   # unstable rust feature path_add_extension
   env.RUSTC_BOOTSTRAP = 1;
 
+  postInstall = ''
+    mv $out/bin/rustique-cli $out/bin/rustique
+  '';
+
   meta = {
     description = "The best Vintage Story mod manager you've never used";
     homepage = "https://github.com/Tekunogosu/Rustique";
     changelog = "https://github.com/Tekunogosu/Rustique/blob/${finalAttrs.src.rev}/changelog.md";
     license = lib.licenses.mit;
-    mainProgram = "rustique-cli";
+    mainProgram = "rustique";
   };
 })
