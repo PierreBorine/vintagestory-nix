@@ -2,6 +2,8 @@
   lib,
   rustPlatform,
   fetchFromGitHub,
+  installShellFiles,
+  cacert,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rustique";
@@ -13,6 +15,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     rev = "v${finalAttrs.version}";
     hash = "sha256-YWC1UkXPYfjS6xN3yXW4bQjHbG9ZF/J8fetlJQUfdJM=";
   };
+
+  nativeBuildInputs = [
+    installShellFiles
+    cacert # needed, even when only generating shell completions
+  ];
 
   # tries to use clang and /usr/bin/mold, let's just not do that, and
   # use the GNU toolchain from stdenv
@@ -26,6 +33,15 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   postInstall = ''
     mv $out/bin/rustique-cli $out/bin/rustique
+
+    # Rustique needs to write config files before doing anything
+    export HOME=$(mktemp -d)
+    $out/bin/rustique misc
+
+    installShellCompletion --cmd rustique \
+      --bash <($out/bin/rustique misc -g bash) \
+      --fish <($out/bin/rustique misc -g fish) \
+      --zsh <($out/bin/rustique misc -g zsh)
   '';
 
   meta = {
