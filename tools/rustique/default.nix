@@ -7,13 +7,13 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rustique";
-  version = "0.5.17";
+  version = "0.6.0";
 
   src = fetchFromGitHub {
     owner = "Tekunogosu";
     repo = "Rustique";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-YWC1UkXPYfjS6xN3yXW4bQjHbG9ZF/J8fetlJQUfdJM=";
+    hash = "sha256-f8QtVzdWnKp+5hGi+y+XRyVq3Ai10u9GEmJKitM1DZQ=";
   };
 
   nativeBuildInputs = [
@@ -27,9 +27,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   # Fails to fetch some dependencies when computing `cargoHash`
   cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
-
-  # unstable rust feature path_add_extension
-  env.RUSTC_BOOTSTRAP = 1;
 
   postInstall = ''
     mv $out/bin/rustique-cli $out/bin/rustique
