@@ -12,11 +12,10 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {
-        allowUnfreePredicate = pkg:
-          lib.elem (lib.getName pkg) [
-            "vintagestory"
-            "rustory"
-          ];
+        allowUnfreePackages = [
+          "vintagestory"
+          "rustory"
+        ];
         permittedInsecurePackages = [
           "dotnet-runtime-7.0.20"
         ];
