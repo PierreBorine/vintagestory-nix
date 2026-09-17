@@ -6,6 +6,7 @@
   makeDesktopItem,
   copyDesktopItems,
   versionCheckHook,
+  installFonts,
   cairo,
   libGLU,
   libglvnd,
@@ -58,6 +59,7 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     makeWrapper
     copyDesktopItems
+    installFonts
   ];
 
   runtimeLibs =
@@ -101,10 +103,9 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/vintagestory $out/bin $out/share/fonts/truetype
+    mkdir -p $out/share/vintagestory $out/bin
     cp -r * $out/share/vintagestory
     install -Dm444 $out/share/vintagestory/assets/gameicon.png $out/share/icons/hicolor/512x512/apps/vintagestory.png
-    cp $out/share/vintagestory/assets/game/fonts/*.ttf $out/share/fonts/truetype
 
     rm -rvf $out/share/vintagestory/{install,run,server}.sh
 
