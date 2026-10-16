@@ -14,13 +14,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "vsmodelcreator";
-  version = "29Oct2025";
+  version = "5Oct2026";
 
   src = fetchFromGitHub {
     owner = "anegostudios";
     repo = "vsmodelcreator";
     rev = finalAttrs.version;
-    hash = "sha256-CzGJmcvcf6QLGqXu2LJ14RzzfakisjhmTG7x/plp6U0=";
+    hash = "sha256-jLvmnNYid9IX2fNrZMrvEG9jwojQ6AO8El14qO57hg4=";
   };
 
   nativeBuildInputs = [
